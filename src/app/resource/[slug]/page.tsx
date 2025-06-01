@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { CustomMDX } from "@/components/mdx";
 import { getPosts } from "@/app/utils/utils";
 import { AvatarGroup, Button, Column, Heading, HeadingNav, Icon, Row, Text } from "@/once-ui/components";
-import { about, resource, person, baseURL } from "@/app/resources";
+import { resource, person, about } from "@/app/resources/content";
 import { formatDate } from "@/app/utils/formatDate";
 import ScrollToHash from "@/components/ScrollToHash";
 import { Metadata } from 'next';
@@ -29,10 +29,10 @@ export async function generateMetadata({
   if (!post) return {};
 
   return Meta.generate({
-    title: post.metadata.title,
-    description: post.metadata.summary,
-    baseURL: baseURL,
-    image: post.metadata.image ? `${baseURL}${post.metadata.image}` : `${baseURL}/og?title=${post.metadata.title}`,
+    title: post.metadata.title || '',
+    description: post.metadata.summary || '',
+    baseURL: process.env.NEXT_PUBLIC_BASE_URL!,
+    image: post.metadata.image ? `${process.env.NEXT_PUBLIC_BASE_URL!}${post.metadata.image}` : `${process.env.NEXT_PUBLIC_BASE_URL!}/og?title=${encodeURIComponent(post.metadata.title || '')}`,
     path: `${resource.path}/${post.slug}`,
   });
 }
@@ -60,18 +60,18 @@ export default async function Resource({
       <Row fillWidth horizontal="center">
         <Column as="section" maxWidth="xs" gap="l">
           <Schema
-            as="resourcePosting"
-            baseURL={baseURL}
+            as="article"
+            baseURL={process.env.NEXT_PUBLIC_BASE_URL!}
             path={`${resource.path}/${post.slug}`}
             title={post.metadata.title}
-            description={post.metadata.summary}
+            description={post.metadata.summary || ''}
             datePublished={post.metadata.publishedAt}
             dateModified={post.metadata.publishedAt}
-            image={`${baseURL}/og?title=${encodeURIComponent(post.metadata.title)}`}
+            image={`${process.env.NEXT_PUBLIC_BASE_URL!}/og?title=${encodeURIComponent(post.metadata.title || '')}`}
             author={{
               name: person.name,
-              url: `${baseURL}${about.path}`,
-              image: `${baseURL}${person.avatar}`,
+              url: `${process.env.NEXT_PUBLIC_BASE_URL!}${about.path}`,
+              image: `${process.env.NEXT_PUBLIC_BASE_URL!}${person.avatar}`,
             }}
           />
           <Button data-border="rounded" href="/blog" weight="default" variant="tertiary" size="s" prefixIcon="chevronLeft">

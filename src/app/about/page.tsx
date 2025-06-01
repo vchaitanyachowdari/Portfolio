@@ -18,6 +18,13 @@ import React from "react";
 import { Meta, Schema } from "@/once-ui/modules";
 import Testimonial from "@/components/about/Testimonial";
 
+interface TestimonialData {
+  text: string;
+  name: string;
+  designation: string;
+  avatar: string;
+}
+
 export async function generateMetadata() {
   return Meta.generate({
     title: about.title,
@@ -318,18 +325,7 @@ export default function About() {
         </Column>
       </Flex>
       {/* Testimonials Section */}
-      {about.testimonials && about.testimonials.length > 0 && (
-        <Column fillWidth marginBottom="xl">
-          <Heading as="h2" variant="display-strong-s" marginBottom="m">
-            Testimonials
-          </Heading>
-          <Column fillWidth gap="l">
-            {about.testimonials.map((testimonial, index) => (
-              <Testimonial key={index} testimonial={testimonial} />
-            ))}
-          </Column>
-        </Column>
-      )}
+      
     </Column>
   );
 }

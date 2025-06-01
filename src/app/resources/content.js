@@ -136,7 +136,7 @@ const about = {
           <>
             Led a cross-functional team to launch a new product line, contributing to a 15% increase
             in overall company revenue.
-          </>,
+          </>
         ],
         images: [],
       },
@@ -194,20 +194,18 @@ const about = {
       },
     ],
   },
-  testimonials: [
-    {
-      text: "Selene is an exceptional design engineer who consistently delivers high-quality work. Her attention to detail and ability to bridge the gap between design and development are truly impressive.",
-      name: "John Doe",
-      designation: "Engineering Lead at Acme Corp",
-      avatar: "/images/placeholder-avatar.jpg", // Placeholder avatar path
-    },
-    {
-      text: "Working with Selene was a pleasure. Her creative problem-solving skills and dedication to creating user-centered designs made a significant impact on our project.",
-      name: "Jane Smith",
-      designation: "Product Manager at Beta Solutions",
-      avatar: "/images/placeholder-avatar-2.jpg", // Placeholder avatar path
-    },
-  ],
+  testimonials: {
+    display: true, // set to false to hide this section
+    title: "Testimonials",
+    testimonial: [
+      {
+        text: "Working with Selene was a pleasure. Her creative problem-solving skills and dedication to creating user-centered designs made a significant impact on our project.",
+        name: "Jane Smith",
+        designation: "Product Manager at Beta Solutions",
+        avatar: "/images/placeholder-avatar-2.jpg", // Placeholder avatar path
+      },
+    ],
+  },
 };
 
 const blog = {
