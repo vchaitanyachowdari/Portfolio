@@ -253,7 +253,21 @@ export default function About() {
               </Column>
             </>
           )}
-
+          
+          {/* Testimonials Section */}
+          {about.testimonials?.display && about.testimonials.testimonial && about.testimonials.testimonial.length > 0 && (
+            <Column fillWidth marginBottom="xl">
+              <Heading as="h2" variant="display-strong-s" marginBottom="40">
+                {about.testimonials.title}
+              </Heading>
+              <Column fillWidth gap="l">
+                {about.testimonials.testimonial.map((testimonial, index) => (
+                  <Testimonial key={index} testimonial={testimonial as any} />
+                ))}
+              </Column>
+            </Column>
+          )}
+          
           {about.studies.display && (
             <>
               <Heading as="h2" id={about.studies.title} variant="display-strong-s" marginBottom="m">
@@ -324,8 +338,6 @@ export default function About() {
           )}
         </Column>
       </Flex>
-      {/* Testimonials Section */}
-      
     </Column>
   );
 }
