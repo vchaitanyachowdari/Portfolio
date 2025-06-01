@@ -194,6 +194,20 @@ const about = {
       },
     ],
   },
+  testimonials: [
+    {
+      text: "Selene is an exceptional design engineer who consistently delivers high-quality work. Her attention to detail and ability to bridge the gap between design and development are truly impressive.",
+      name: "John Doe",
+      designation: "Engineering Lead at Acme Corp",
+      avatar: "/images/placeholder-avatar.jpg", // Placeholder avatar path
+    },
+    {
+      text: "Working with Selene was a pleasure. Her creative problem-solving skills and dedication to creating user-centered designs made a significant impact on our project.",
+      name: "Jane Smith",
+      designation: "Product Manager at Beta Solutions",
+      avatar: "/images/placeholder-avatar-2.jpg", // Placeholder avatar path
+    },
+  ],
 };
 
 const blog = {
@@ -226,41 +240,57 @@ const gallery = {
       src: "/images/gallery/horizontal-1.jpg",
       alt: "image",
       orientation: "horizontal",
+      description: "Description for horizontal image 1",
+      caseStudyLink: "/gallery/horizontal-1",
     },
     {
       src: "/images/gallery/horizontal-2.jpg",
       alt: "image",
       orientation: "horizontal",
+      description: "Description for horizontal image 2",
+      caseStudyLink: "/gallery/horizontal-2",
     },
     {
       src: "/images/gallery/horizontal-3.jpg",
       alt: "image",
       orientation: "horizontal",
+      description: "Description for horizontal image 3",
+      caseStudyLink: "/gallery/horizontal-3",
     },
     {
       src: "/images/gallery/horizontal-4.jpg",
       alt: "image",
       orientation: "horizontal",
+      description: "Description for horizontal image 4",
+      caseStudyLink: "/gallery/horizontal-4",
     },
     {
       src: "/images/gallery/vertical-1.jpg",
       alt: "image",
       orientation: "vertical",
+      description: "Description for vertical image 1",
+      caseStudyLink: "/gallery/vertical-1",
     },
     {
       src: "/images/gallery/vertical-2.jpg",
       alt: "image",
       orientation: "vertical",
+      description: "Description for vertical image 2",
+      caseStudyLink: "/gallery/vertical-2",
     },
     {
       src: "/images/gallery/vertical-3.jpg",
       alt: "image",
       orientation: "vertical",
+      description: "Description for vertical image 3",
+      caseStudyLink: "/gallery/vertical-3",
     },
     {
       src: "/images/gallery/vertical-4.jpg",
       alt: "image",
       orientation: "vertical",
+      description: "Description for vertical image 4",
+      caseStudyLink: "/gallery/vertical-4",
     },
   ],
 };
@@ -268,8 +298,8 @@ const gallery = {
 const resource = {
   path: "/resource",
   label: "Resource",
-  title: "Writing about design and tech...",
-  description: `Read what ${person.name} has been up to recently`,
+  title: "Resource – ${person.name}",
+  description: `Resource by ${person.name}`,
   // Create new resource posts by adding a new .mdx file to app/resource/posts
   // All posts will be listed on the /resource route
 };

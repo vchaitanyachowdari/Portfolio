@@ -16,6 +16,7 @@ import styles from "@/components/about/about.module.scss";
 import { person, about, social } from "@/app/resources/content";
 import React from "react";
 import { Meta, Schema } from "@/once-ui/modules";
+import Testimonial from "@/components/about/Testimonial";
 
 export async function generateMetadata() {
   return Meta.generate({
@@ -316,6 +317,19 @@ export default function About() {
           )}
         </Column>
       </Flex>
+      {/* Testimonials Section */}
+      {about.testimonials && about.testimonials.length > 0 && (
+        <Column fillWidth marginBottom="xl">
+          <Heading as="h2" variant="display-strong-s" marginBottom="m">
+            Testimonials
+          </Heading>
+          <Column fillWidth gap="l">
+            {about.testimonials.map((testimonial, index) => (
+              <Testimonial key={index} testimonial={testimonial} />
+            ))}
+          </Column>
+        </Column>
+      )}
     </Column>
   );
 }

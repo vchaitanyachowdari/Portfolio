@@ -1,7 +1,7 @@
 "use client";
 
 import Masonry from "react-masonry-css";
-import { SmartImage } from "@/once-ui/components";
+import { SmartImage, Column, Text, SmartLink, Button } from "@/once-ui/components";
 import styles from "./Gallery.module.scss";
 import { gallery } from "@/app/resources/content";
 
@@ -18,16 +18,43 @@ export default function MasonryGrid() {
       columnClassName={styles.masonryGridColumn}
     >
       {gallery.images.map((image, index) => (
-        <SmartImage
-          priority={index < 10}
-          sizes="(max-width: 560px) 100vw, 50vw"
+        <Column
           key={index}
-          radius="m"
-          aspectRatio={image.orientation === "horizontal" ? "16 / 9" : "3 / 4"}
-          src={image.src}
-          alt={image.alt}
-          className={styles.gridItem}
-        />
+          gap="m"
+          // Add styling for the box if needed, e.g., border, padding
+          // border="neutral-medium"
+          // padding="m"
+          fillWidth
+          
+          marginBottom="l"
+        >
+          <SmartImage
+            priority={index < 10}
+            sizes="(max-width: 560px) 100vw, 50vw"
+            radius="m"
+            aspectRatio={image.orientation === "horizontal" ? "16 / 9" : "3 / 4"}
+            src={image.src}
+            alt={image.alt}
+            className={styles.gridItem}
+          />
+          {image.description && (
+            <Text
+              variant="body-default-m"
+              className={`${styles.descriptionSpacing} ${styles.descriptionCentered}`}
+            >
+              "{image.description}"
+            </Text>
+          )}
+          {image.caseStudyLink && (
+            <SmartLink
+              href={image.caseStudyLink}
+              className={`${styles.caseStudyLink} ${styles.caseStudyLinkSpacing}`}
+              style={{ display: 'block', margin: 'auto' }}
+            >
+              View Case Study <span>&rarr;</span>
+            </SmartLink>
+          )}
+        </Column>
       ))}
     </Masonry>
   );

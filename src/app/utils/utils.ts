@@ -66,7 +66,7 @@ function readMDXFile(filePath: string) {
   return { metadata, content };
 }
 
-function getMDXData(dir: string) {
+export function getMDXData(dir: string) {
   const mdxFiles = getMDXFiles(dir);
   return mdxFiles.map((file) => {
     const { metadata, content } = readMDXFile(path.join(dir, file));
