@@ -265,4 +265,13 @@ const gallery = {
   ],
 };
 
-export { person, social, newsletter, home, about, blog, work, gallery };
+const resource = {
+  path: "/resource",
+  label: "Resource",
+  title: "Writing about design and tech...",
+  description: `Read what ${person.name} has been up to recently`,
+  // Create new resource posts by adding a new .mdx file to app/resource/posts
+  // All posts will be listed on the /resource route
+};
+
+export { person, social, newsletter, home, about, blog, work, gallery, resource };

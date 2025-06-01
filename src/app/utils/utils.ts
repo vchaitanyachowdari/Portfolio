@@ -11,30 +11,43 @@ type Team = {
 
 type Metadata = {
   title: string;
-  publishedAt: string;
-  summary: string;
+  publishedAt?: string;
+  summary?: string;
   image?: string;
-  images: string[];
-  tag?: string;
-  team: Team[];
+  images?: string[];
+  tag?: string | string[];
+  team?: Team[];
   link?: string;
+  section?: string;
+};
+
+type ResourceArticle = {
+  title: string;
+  slug: string;
+  content: string;
+  image?: string;
+};
+
+type ResourceSection = {
+  title: string;
+  slug: string;
+  description?: string;
+  "resource-dis": ResourceArticle[];
 };
 
 import { notFound } from 'next/navigation';
 
 function getMDXFiles(dir: string) {
   if (!fs.existsSync(dir)) {
-    notFound();
+    return [];
   }
-
   return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
 }
 
 function readMDXFile(filePath: string) {
-    if (!fs.existsSync(filePath)) {
-        notFound();
-    }
-
+  if (!fs.existsSync(filePath)) {
+    return { metadata: {} as Metadata, content: "" };
+  }
   const rawContent = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(rawContent);
 
@@ -47,6 +60,7 @@ function readMDXFile(filePath: string) {
     tag: data.tag || [],
     team: data.team || [],
     link: data.link || "",
+    section: data.section || "",
   };
 
   return { metadata, content };
