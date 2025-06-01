@@ -10,14 +10,9 @@ interface Params {
   slug: string;
 }
 
-interface CaseStudyPageProps {
-  params: Params;
-}
-
-export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
-  const awaitedParams = await params;
+export default async function CaseStudyPage({ params }: { params: Params }) {
   const caseStudiesDir = path.join(process.cwd(), 'src', 'app', 'gallery', 'case-studies');
-  const caseStudy = getMDXData(caseStudiesDir).find((cs) => cs.slug === awaitedParams.slug);
+  const caseStudy = getMDXData(caseStudiesDir).find((cs) => cs.slug === params.slug);
 
   if (!caseStudy) {
     notFound();
@@ -41,9 +36,8 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
 export async function generateMetadata({
   params,
 }: { params: { slug: string } }): Promise<Metadata> {
-  const awaitedParams = await params;
   const caseStudiesDir = path.join(process.cwd(), 'src', 'app', 'gallery', 'case-studies');
-  const post = getMDXData(caseStudiesDir).find((cs) => cs.slug === awaitedParams.slug);
+  const post = getMDXData(caseStudiesDir).find((cs) => cs.slug === params.slug);
 
   if (!post || !process.env.NEXT_PUBLIC_BASE_URL) {
     return {};
